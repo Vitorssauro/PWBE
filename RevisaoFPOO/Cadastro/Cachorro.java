@@ -1,4 +1,4 @@
-package RevisaoFPOO.Cadastro;
+package Cadastro;
 
 public class Cachorro extends Animal{
     String raca;
