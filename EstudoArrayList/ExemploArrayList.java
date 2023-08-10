@@ -41,8 +41,8 @@ public class ExemploArrayList {
         n.add(3);
         n.add(4);        
         n.add(5);
-        for (int i = 0; i < n.size(); i++) {
-            System.out.println(n);
+        for (int i : n) {
+            System.out.println(i);
         }
     }
 }
