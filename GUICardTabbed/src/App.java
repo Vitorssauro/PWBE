@@ -1,5 +1,5 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        new AtividadeCardLayout();
+        new Atividade3CardLayout();
     }
 }
