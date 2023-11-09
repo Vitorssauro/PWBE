@@ -108,4 +108,24 @@ public class ConnectionDAO {
             ConnectionFactory.closeConnection(this.connection);
         }
     }
+
+    // Método para listar todos os valores cadastrados na tabela
+    public void listarTodos() {
+        ResultSet rs = null;
+        // Define a instrução SQL para selecionar todos os registros da tabela
+        String sql = "SELECT * FROM minha_tabela";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            rs = stmt.executeQuery(); // Executa a consulta e obtém resultados
+            while (rs.next()) {
+                System.out.println("id : " + rs.getInt("id") +
+                        " nome: " + rs.getString("nome") +
+                        " email: " + rs.getString("email"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            ConnectionFactory.closeConnection(connection);
+        }
+    }
 }
