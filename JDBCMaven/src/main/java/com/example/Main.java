@@ -9,7 +9,7 @@ public class Main {
         try {
             Statement s; // Cria uma instância de Statement para executar comandos SQL.
             String usuario = "postgres"; // Nome de usuário do banco de dados.
-            String senha = "postgres"; // Senha do banco de dados.
+            String senha = "admin"; // Senha do banco de dados.
             String url = "jdbc:postgresql://localhost:5432/postgres"; // URL de conexão com o banco de dados PostgreSQL.
 
             // Estabelece a conexão com o banco de dados.
