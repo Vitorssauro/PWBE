@@ -92,6 +92,28 @@ public class CarrosDAO {
         }
     }
 
+     // Atualizar dados no banco
+     public void atualizar(String marca, String modelo, String ano, String placa, String valor) {
+        PreparedStatement stmt = null;
+        // Define a instrução SQL parametrizada para atualizar dados pela placa
+        String sql = "UPDATE carros_lojacarros SET marca = ?, modelo = ?, ano = ?, valor = ? WHERE placa = ?";
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, marca);
+            stmt.setString(2, modelo);
+            stmt.setString(3, ano);
+            stmt.setString(4, valor);
+            // placa é chave primaria não pode ser alterada.
+            stmt.setString(5, placa);
+            stmt.executeUpdate();
+            System.out.println("Dados atualizados com sucesso");
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar dados no banco de dados.", e);
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt);
+        }
+    }
+
     // Apagar dados do banco
     public void apagar(String placa) {
         PreparedStatement stmt = null;

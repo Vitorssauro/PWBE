@@ -92,6 +92,7 @@ public class CarrosPainel extends JPanel {
             carPlacaField.setText("");
             carValorField.setText("");
         });
+        
         // tratamento do botão editar
         editar.addActionListener(e -> {
             operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(),
