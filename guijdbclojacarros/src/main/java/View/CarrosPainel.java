@@ -1,16 +1,25 @@
 package View;
 
 import java.util.List;
-import javax.swing.*;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Connection.CarrosDAO;
 import Controller.CarrosControl;
-import Model.Carros;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+
+import Model.Carros;
 
 public class CarrosPainel extends JPanel {
     // Atributos(componentes)
@@ -58,17 +67,17 @@ public class CarrosPainel extends JPanel {
         table = new JTable(tableModel);
         jSPane.setViewportView(table);
 
-        // Cria o banco de dados caso não tenha sido criado
+        // criar o banco de dados
         new CarrosDAO().criaTabela();
-        // incluindo elementos do banco na criação do painel
+        // executar o método de atualizar tabela
         atualizarTabela();
-
-        // tratamento de eventos (dentro construtor)
-
-        // tratamento mouse
+        // tratamento de eventos(construtor)
+        
+        //tratamento para click do mouse na tabela
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
+                linhaSelecionada = table.rowAtPoint(evt.getPoint());
                 if (linhaSelecionada != -1) {
                     carMarcaField.setText((String) table.getValueAt(linhaSelecionada, 0));
                     carModeloField.setText((String) table.getValueAt(linhaSelecionada, 1));
@@ -81,23 +90,11 @@ public class CarrosPainel extends JPanel {
 
         CarrosControl operacoes = new CarrosControl(carros, tableModel, table);
 
-        // tratamento para botão cadastrar
-        cadastrar.addActionListener(e -> {
+        //tratamento para botão cadastrar
+        cadastrar.addActionListener(e->{
             operacoes.cadastrar(carMarcaField.getText(), carModeloField.getText(),
-                    carAnoField.getText(), carPlacaField.getText(),
-                    carValorField.getText());
-            carMarcaField.setText("");
-            carModeloField.setText("");
-            carAnoField.setText("");
-            carPlacaField.setText("");
-            carValorField.setText("");
-        });
-        
-        // tratamento do botão editar
-        editar.addActionListener(e -> {
-            operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(),
-                    carAnoField.getText(), carPlacaField.getText(),
-                    carValorField.getText());
+                                carAnoField.getText(), carPlacaField.getText(),
+                                carValorField.getText());
             carMarcaField.setText("");
             carModeloField.setText("");
             carAnoField.setText("");
@@ -105,8 +102,20 @@ public class CarrosPainel extends JPanel {
             carValorField.setText("");
         });
 
-        // tratamento do botão apagar
-        apagar.addActionListener(e -> {
+        //tratamento do botão editar
+        editar.addActionListener(e->{
+            operacoes.atualizar(carMarcaField.getText(), carModeloField.getText(),
+                                carAnoField.getText(), carPlacaField.getText(),
+                                carValorField.getText());
+            carMarcaField.setText("");
+            carModeloField.setText("");
+            carAnoField.setText("");
+            carPlacaField.setText("");
+            carValorField.setText("");
+        });
+
+        //tratamento do botão apagar
+        apagar.addActionListener(e->{
             operacoes.apagar(carPlacaField.getText());
             carMarcaField.setText("");
             carModeloField.setText("");
@@ -115,11 +124,10 @@ public class CarrosPainel extends JPanel {
             carValorField.setText("");
         });
 
+
     }
 
-    // metodos fora do construtor
-    // métodos (atualiza tabela)
-
+    // métodos (atualizar tabela)
     // Método para atualizar a tabela de exibição com dados do banco de dados
     private void atualizarTabela() {
         tableModel.setRowCount(0); // Limpa todas as linhas existentes na tabela

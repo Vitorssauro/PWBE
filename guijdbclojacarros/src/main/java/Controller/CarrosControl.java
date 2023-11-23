@@ -2,7 +2,7 @@ package Controller;
 
 import java.util.List;
 
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Connection.CarrosDAO;
@@ -22,8 +22,7 @@ public class CarrosControl {
         this.table = table;
     }
 
-    // metodos do modelo CRUD
-
+    // métodos do modelo CRUD
     // Método para atualizar a tabela de exibição com dados do banco de dados
     private void atualizarTabela() {
         tableModel.setRowCount(0); // Limpa todas as linhas existentes na tabela
@@ -46,7 +45,7 @@ public class CarrosControl {
 
     // Método para atualizar os dados de um carro no banco de dados
     public void atualizar(String marca, String modelo, String ano, String placa, String valor) {
-        // new CarrosDAO().atualizar(marca, modelo, ano, placa, valor);
+        new CarrosDAO().atualizar(marca, modelo, ano, placa, valor);
         // Chama o método de atualização no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após a atualização
     }
