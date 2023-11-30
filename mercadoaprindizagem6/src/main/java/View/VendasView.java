@@ -15,6 +15,7 @@ public class VendasView extends JPanel {
     private JTextField cadCpfField,totalField,totalDescField;
     private DefaultTableModel tableModel;
     private JTable table;
+    private JComboBox<String> codBarrasBox;
 
     public VendasView() {
         super();
@@ -29,7 +30,7 @@ public class VendasView extends JPanel {
         inputPanel.add(procurar = new JButton("Procurar"));
 
         // componentes Jcombobox
-        JComboBox codBarrasBox = new JComboBox<>();
+        codBarrasBox = new JComboBox<>();
         codBarrasBox.addItem("Cod. de Barras");
         codBarrasBox.addItem("1");
         codBarrasBox.addItem("2");

@@ -87,7 +87,7 @@ public class CadastroPainel extends JPanel {
 
         CadastroControl operacoes = new CadastroControl(Cadastro, tableModel, table);
 
-        // tratamento para o botçao cadastrar
+        // tratamento para o botao cadastrar 
         cadastrar.addActionListener(e -> {
             operacoes.cadastrar(cadNomeField.getText(), cadSobrenomeField.getText(), cadCpfField.getText(),
                     cadEnderecoField.getText(), cadIdadeField.getText());
